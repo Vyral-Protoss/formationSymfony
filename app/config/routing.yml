@@ -1,3 +1,13 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+park_homepage :
+    resource: "@ParkBundle/Controller/"
+    type: annotation
+
+#park:
+#    resource: "@ParkBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+
+#app:
+#    resource: "@AppBundle/Controller/"
+#    type:     annotation
+
