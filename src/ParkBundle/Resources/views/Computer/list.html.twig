@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ parent() }}  Park computer list{% endblock %}
+
+{% block body %}
+<h2>Computer list</h2>
+
+<table class="table table-striped table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>IP</th>
+        <th>Enabled</th>
+    </tr>
+    {% for computer in computers %}
+        <tr>
+            <td>{{ computer.id }}</td>
+            <td>{{ computer.name|computer_name }}</td>
+            <td>{{ computer.ip }}</td>
+            <td>{{ computer.enabled|computer_status }}</td>
+        </tr>
+    {% else %}
+        <tr><td colspan="4">No data</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}
