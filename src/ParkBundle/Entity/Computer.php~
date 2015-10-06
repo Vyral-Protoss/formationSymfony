@@ -127,8 +127,31 @@ class Computer
 
     /**
      * @ORM\ManyToOne(targetEntity="Person", inversedBy="computers")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     protected $person;
-}
 
+    /**
+     * Set person
+     *
+     * @param \ParkBundle\Entity\Person $person
+     *
+     * @return Computer
+     */
+    public function setPerson(\ParkBundle\Entity\Person $person)
+    {
+        $this->person = $person;
+
+        return $this;
+    }
+
+    /**
+     * Get person
+     *
+     * @return \ParkBundle\Entity\Person
+     */
+    public function getPerson()
+    {
+        return $this->person;
+    }
+}

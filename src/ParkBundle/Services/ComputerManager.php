@@ -10,7 +10,7 @@ namespace ParkBundle\Services;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 
-class computerManager
+class ComputerManager
 {
     protected $em;
     public function __construct(Registry $em)

@@ -3,7 +3,7 @@
 {% block body -%}
     <h1>Computer</h1>
 
-    <table class="record_properties">
+    <table class="table table-bordered table-striped">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -19,7 +19,7 @@
             </tr>
             <tr>
                 <th>Enabled</th>
-                <td>{{ entity.enabled }}</td>
+                <td>{{ entity.enabled|computer_status }}</td>
             </tr>
         </tbody>
     </table>

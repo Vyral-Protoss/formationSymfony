@@ -15,7 +15,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use ParkBundle\Entity\Computer;
 
-class changeStatusCommand extends ContainerAwareCommand
+class ChangeStatusCommand extends ContainerAwareCommand
 {
     protected function configure()
     {

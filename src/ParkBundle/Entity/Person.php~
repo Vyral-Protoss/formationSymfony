@@ -35,6 +35,13 @@ class Person
      */
     private $lastname;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="age", type="string", length=3)
+     */
+    private $age;
+
 
     /**
      * Get id
@@ -94,10 +101,55 @@ class Person
         return $this->lastname;
     }
 
+    public function __toString()
+    {
+        return $this->getFirstname() . ' ' . $this->getLastname();
+    }
+
     /**
      * @ORM\OneToMany(targetEntity="Computer", mappedBy="person")
      */
     protected $computers;
 
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->computers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add computer
+     *
+     * @param \ParkBundle\Entity\Computer $computer
+     *
+     * @return Person
+     */
+    public function addComputer(\ParkBundle\Entity\Computer $computer)
+    {
+        $this->computers[] = $computer;
+
+        return $this;
+    }
+
+    /**
+     * Remove computer
+     *
+     * @param \ParkBundle\Entity\Computer $computer
+     */
+    public function removeComputer(\ParkBundle\Entity\Computer $computer)
+    {
+        $this->computers->removeElement($computer);
+    }
+
+    /**
+     * Get computers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComputers()
+    {
+        return $this->computers;
+    }
+}
