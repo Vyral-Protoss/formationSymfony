@@ -11,6 +11,8 @@
         <th>Name</th>
         <th>IP</th>
         <th>Enabled</th>
+        <th>Person ID</th>
+        <th>Person Firstname</th>
     </tr>
     {% for computer in computers %}
         <tr>
@@ -18,6 +20,12 @@
             <td>{{ computer.name|computer_name }}</td>
             <td>{{ computer.ip }}</td>
             <td>{{ computer.enabled|computer_status }}</td>
+            {% if computer.person != null %}
+                <td>{{ computer.person.id }}</td>
+                <td>{{ computer.person.firstname }}</td>
+            {% else %}
+                <td colspan="2">No data</td>
+            {% endif %}
         </tr>
     {% else %}
         <tr><td colspan="4">No data</td></tr>
