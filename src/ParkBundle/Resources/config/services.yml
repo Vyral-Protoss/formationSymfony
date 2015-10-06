@@ -1,5 +1,10 @@
 services:
-  park.twig.computer_status_extension:
-          class: ParkBundle\Twig\ComputerExtension
-          tags:
-              - { name: twig.extension }
+    park.twig.computer_status_extension:
+        class: ParkBundle\Twig\ComputerExtension
+        tags:
+            - { name: twig.extension }
+
+    park.computerManager:
+        class: ParkBundle\Services\computerManager
+        arguments: ["@doctrine"]
+
