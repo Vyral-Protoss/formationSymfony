@@ -14,4 +14,12 @@ class Calculator
     public function somme($a,$b) {
         return $a+$b;
     }
+
+    public function division($a,$b) {
+        if ($b == 0){
+            return 0;
+        } else {
+            return $a/$b;
+        }
+    }
 }

@@ -6,6 +6,19 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ComputerControllerTest extends WebTestCase
 {
+    public function testCalculator(){
+        // Create a new client to browse the application
+        $client = static::createClient();
+
+        $varA = 6;
+        $varB = 36;
+        $sum = $varA + $varB;
+
+        // Create a new entry in the database
+        $crawler = $client->request('GET', '/park/computer/calculator/'.$varA.'/'.$varB);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /computer/calculator");
+        $this->assertEquals($sum,$crawler->filter('div.test-target')->text(),'Somme erronée');
+    }
     /*
     public function testCompleteScenario()
     {

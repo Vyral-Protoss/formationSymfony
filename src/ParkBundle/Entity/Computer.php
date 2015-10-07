@@ -29,9 +29,8 @@ class Computer
     private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ip", type="string", length=15)
+     * @ORM\OneToOne(targetEntity="Ip")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $ip;
 
@@ -75,30 +74,6 @@ class Computer
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set ip
-     *
-     * @param string $ip
-     *
-     * @return Computer
-     */
-    public function setIp($ip)
-    {
-        $this->ip = $ip;
-
-        return $this;
-    }
-
-    /**
-     * Get ip
-     *
-     * @return string
-     */
-    public function getIp()
-    {
-        return $this->ip;
     }
 
     /**
@@ -153,5 +128,34 @@ class Computer
     public function getPerson()
     {
         return $this->person;
+    }
+
+    /**
+     * Set ip
+     *
+     * @param \ParkBundle\Entity\Ip $ip
+     *
+     * @return Computer
+     */
+    public function setIp(\ParkBundle\Entity\Ip $ip = null)
+    {
+        $ip->setComputer($this);
+        $this->ip = $ip;
+
+        return $this;
+    }
+
+    /**
+     * Get ip
+     *
+     * @return \ParkBundle\Entity\Ip
+     */
+    public function getIp()
+    {
+        return $this->ip;
+    }
+
+    public function __toString() {
+        return $this->getName();
     }
 }
