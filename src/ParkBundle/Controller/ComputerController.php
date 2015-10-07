@@ -244,4 +244,25 @@ class ComputerController extends Controller
             ->getForm()
         ;
     }
+
+    /**
+     * Sum variables.
+     *
+     * @Route("/calculator/{a}/{b}",
+     * name="somme",
+     * defaults={"a" = 1,"b" = 2},
+     *     requirements={
+     *         "a": "^[0-9]+",
+     *         "b": "^[0-9]+"
+     *     }
+     * )
+     *
+     * @Template()
+     */
+    public function sommeAction($a,$b)
+    {
+        return array(
+            'somme' => $this->get('park.calculator')->somme($a,$b)
+        );
+    }
 }
