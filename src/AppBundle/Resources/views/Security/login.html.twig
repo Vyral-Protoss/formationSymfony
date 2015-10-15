@@ -2,8 +2,20 @@
 {% block title %}{{ parent() }}  Login{% endblock %}
 
 {% block body -%}
+    {% if error %}
+        <div class="alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
     <h1>Login</h1>
+    <form action="{{ path('security_login_check') }}" method="post">
+        <div class="form-group">
+            <label for="username">Username :</label>
+            <input type="text" id="username" name="_username" class="form-control" value="{{ last_username }}">
+        </div>
 
-
-
+        <div class="form-group">
+            <label for="password">Password :</label>
+            <input type="password" id="password" name="_password" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
 {% endblock %}
