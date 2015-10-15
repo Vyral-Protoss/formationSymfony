@@ -152,4 +152,28 @@ class Person
     {
         return $this->computers;
     }
+
+    /**
+     * Set age
+     *
+     * @param string $age
+     *
+     * @return Person
+     */
+    public function setAge($age)
+    {
+        $this->age = $age;
+
+        return $this;
+    }
+
+    /**
+     * Get age
+     *
+     * @return string
+     */
+    public function getAge()
+    {
+        return $this->age;
+    }
 }
