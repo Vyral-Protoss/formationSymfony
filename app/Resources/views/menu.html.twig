@@ -10,6 +10,7 @@
                 <li><a href="{{ path('person') }}">List persons</a></li>
                 <li><a href="{{ path('computer') }}">List computers</a></li>
                 <li><a href="{{ path('ip') }}">List IP</a></li>
+                {% if is_granted('ROLE_ADMIN') %}<li><a href="{{ path('user') }}">List User</a></li>{% endif %}
             </ul>
         </li>
 

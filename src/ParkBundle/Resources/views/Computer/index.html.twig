@@ -34,12 +34,13 @@
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
+    {% if is_granted('ROLE_ADMIN') %}
+    <ul>
         <li>
             <a href="{{ path('computer_new') }}">
                 Create a new entry
             </a>
         </li>
     </ul>
-    {% endblock %}
+    {% endif %}
+{% endblock %}

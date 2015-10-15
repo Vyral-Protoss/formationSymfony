@@ -2,14 +2,25 @@
 # http://symfony.com/doc/current/book/security.html
 security:
 
+    role_hierarchy:
+            ROLE_MODERATOR: [ROLE_USER]
+            ROLE_ADMIN: [ROLE_MODERATOR]
+            ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:  { password: user, roles: [ 'ROLE_USER' ] }
-                    admin: { password: admin, roles: [ 'ROLE_ADMIN' ] }
-                    superadmin: { password: superadmin, roles: [ 'ROLE_SUPER_ADMIN' ] }
+        #in_memory:
+        #    memory:
+        #        users:
+        #            user:  { password: user, roles: [ 'ROLE_USER' ] }
+        #            admin: { password: admin, roles: [ 'ROLE_ADMIN' ] }
+        #            superadmin: { password: superadmin, roles: [ 'ROLE_SUPER_ADMIN' ] }
+        our_db_provider:
+                    entity:
+                        class: AppBundle:User
+                        property: username
+                        # if you're using multiple entity managers
+                        # manager_name: customer
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -20,7 +31,7 @@ security:
         main:
             pattern: ^/
             anonymous: true
-            provider:  in_memory
+            provider: our_db_provider
             form_login:
                 login_path: /login
                 check_path: /login_check
@@ -37,9 +48,11 @@ security:
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
 
+    # Cypher
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        AppBundle\Entity\User: sha512
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: IS_AUTHENTICATED_REMEMBERED }
+

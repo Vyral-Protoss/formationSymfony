@@ -20,6 +20,7 @@
         "oyejorge/less.php": "v1.7.0.9",
         "braincrafted/bootstrap-bundle": "~2.1.2",
         "twbs/bootstrap": "3.0.*",
+        "hautelook/alice-bundle": "^0.2.0",
         "components/jquery":  "2.1.4"
     },
     "require-dev": {
