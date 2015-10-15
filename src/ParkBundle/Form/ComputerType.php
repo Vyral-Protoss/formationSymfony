@@ -2,6 +2,7 @@
 
 namespace ParkBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -16,8 +17,16 @@ class ComputerType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('ip')
-            ->add('enabled')
+            ->add('ip',
+                'entity',
+                array(
+                    'class' => 'ParkBundle\Entity\Ip',
+                    'query_builder' => function(EntityRepository $repo){
+                        return $repo->getUnaffectedIps();
+                    }
+                )
+            )
+            ->add('enabled','checkbox',array('required' => false))
             ->add('person')
         ;
     }

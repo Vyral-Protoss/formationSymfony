@@ -1,4 +1,4 @@
-park :
+park:
     resource: "@ParkBundle/Controller/"
     type: annotation
     prefix:   /park

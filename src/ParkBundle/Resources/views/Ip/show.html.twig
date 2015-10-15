@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Computer</h1>
+    <h1>Ip</h1>
 
     <table class="table table-bordered table-striped">
         <tbody>
@@ -10,28 +10,32 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
-                <td>{{ entity.name }}</td>
-            </tr>
-            <tr>
                 <th>Ip</th>
                 <td>{{ entity.ip }}</td>
             </tr>
             <tr>
-                <th>Enabled</th>
-                <td>{{ entity.enabled|computer_status }}</td>
+                <th>Updateat</th>
+                <td>{{ entity.updateAt|date('Y-m-d') }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ entity.description }}</td>
+            </tr>
+            <tr>
+                <th>Computer</th>
+                <td>{{ entity.computer }}</td>
             </tr>
         </tbody>
     </table>
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('computer') }}">
+        <a href="{{ path('ip') }}">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('computer_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('ip_edit', { 'id': entity.id }) }}">
             Edit
         </a>
     </li>

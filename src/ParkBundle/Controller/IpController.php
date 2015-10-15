@@ -7,21 +7,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use ParkBundle\Entity\Computer;
-use ParkBundle\Form\ComputerType;
+use ParkBundle\Entity\Ip;
+use ParkBundle\Form\IpType;
 
 /**
- * Computer controller.
+ * Ip controller.
  *
- * @Route("/computer")
+ * @Route("/ip")
  */
-class ComputerController extends Controller
+class IpController extends Controller
 {
 
     /**
-     * Lists all Computer entities.
+     * Lists all Ip entities.
      *
-     * @Route("/", name="computer")
+     * @Route("/", name="ip")
      * @Method("GET")
      * @Template()
      */
@@ -29,22 +29,22 @@ class ComputerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ParkBundle:Computer')->findAll();
+        $entities = $em->getRepository('ParkBundle:Ip')->findAll();
 
         return array(
             'entities' => $entities,
         );
     }
     /**
-     * Creates a new Computer entity.
+     * Creates a new Ip entity.
      *
-     * @Route("/", name="computer_create")
+     * @Route("/", name="ip_create")
      * @Method("POST")
-     * @Template("ParkBundle:Computer:new.html.twig")
+     * @Template("ParkBundle:Ip:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity = new Computer();
+        $entity = new Ip();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -53,7 +53,7 @@ class ComputerController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('computer_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('ip_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -63,16 +63,16 @@ class ComputerController extends Controller
     }
 
     /**
-     * Creates a form to create a Computer entity.
+     * Creates a form to create a Ip entity.
      *
-     * @param Computer $entity The entity
+     * @param Ip $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Computer $entity)
+    private function createCreateForm(Ip $entity)
     {
-        $form = $this->createForm(new ComputerType(), $entity, array(
-            'action' => $this->generateUrl('computer_create'),
+        $form = $this->createForm(new IpType(), $entity, array(
+            'action' => $this->generateUrl('ip_create'),
             'method' => 'POST',
         ));
 
@@ -82,15 +82,15 @@ class ComputerController extends Controller
     }
 
     /**
-     * Displays a form to create a new Computer entity.
+     * Displays a form to create a new Ip entity.
      *
-     * @Route("/new", name="computer_new")
+     * @Route("/new", name="ip_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new Computer();
+        $entity = new Ip();
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -100,9 +100,9 @@ class ComputerController extends Controller
     }
 
     /**
-     * Finds and displays a Computer entity.
+     * Finds and displays a Ip entity.
      *
-     * @Route("/{id}", name="computer_show")
+     * @Route("/{id}", name="ip_show")
      * @Method("GET")
      * @Template()
      */
@@ -110,10 +110,10 @@ class ComputerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ParkBundle:Computer')->find($id);
+        $entity = $em->getRepository('ParkBundle:Ip')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Computer entity.');
+            throw $this->createNotFoundException('Unable to find Ip entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -125,9 +125,9 @@ class ComputerController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing Computer entity.
+     * Displays a form to edit an existing Ip entity.
      *
-     * @Route("/{id}/edit", name="computer_edit")
+     * @Route("/{id}/edit", name="ip_edit")
      * @Method("GET")
      * @Template()
      */
@@ -135,10 +135,10 @@ class ComputerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ParkBundle:Computer')->find($id);
+        $entity = $em->getRepository('ParkBundle:Ip')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Computer entity.');
+            throw $this->createNotFoundException('Unable to find Ip entity.');
         }
 
         $editForm = $this->createEditForm($entity);
@@ -152,16 +152,16 @@ class ComputerController extends Controller
     }
 
     /**
-    * Creates a form to edit a Computer entity.
+    * Creates a form to edit a Ip entity.
     *
-    * @param Computer $entity The entity
+    * @param Ip $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Computer $entity)
+    private function createEditForm(Ip $entity)
     {
-        $form = $this->createForm(new ComputerType(), $entity, array(
-            'action' => $this->generateUrl('computer_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new IpType(), $entity, array(
+            'action' => $this->generateUrl('ip_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -170,20 +170,20 @@ class ComputerController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Computer entity.
+     * Edits an existing Ip entity.
      *
-     * @Route("/{id}", name="computer_update")
+     * @Route("/{id}", name="ip_update")
      * @Method("PUT")
-     * @Template("ParkBundle:Computer:edit.html.twig")
+     * @Template("ParkBundle:Ip:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ParkBundle:Computer')->find($id);
+        $entity = $em->getRepository('ParkBundle:Ip')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Computer entity.');
+            throw $this->createNotFoundException('Unable to find Ip entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -193,7 +193,7 @@ class ComputerController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('computer_show', array('id' => $id)));
+            return $this->redirect($this->generateUrl('ip_edit', array('id' => $id)));
         }
 
         return array(
@@ -203,9 +203,9 @@ class ComputerController extends Controller
         );
     }
     /**
-     * Deletes a Computer entity.
+     * Deletes a Ip entity.
      *
-     * @Route("/{id}", name="computer_delete")
+     * @Route("/{id}", name="ip_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -215,21 +215,21 @@ class ComputerController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ParkBundle:Computer')->find($id);
+            $entity = $em->getRepository('ParkBundle:Ip')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Computer entity.');
+                throw $this->createNotFoundException('Unable to find Ip entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('computer'));
+        return $this->redirect($this->generateUrl('ip'));
     }
 
     /**
-     * Creates a form to delete a Computer entity by id.
+     * Creates a form to delete a Ip entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -238,31 +238,10 @@ class ComputerController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('computer_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('ip_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
-    }
-
-    /**
-     * Sum variables.
-     *
-     * @Route("/calculator/{a}/{b}",
-     * name="somme",
-     * defaults={"a" = 1,"b" = 2},
-     *     requirements={
-     *         "a": "^[0-9]+",
-     *         "b": "^[0-9]+"
-     *     }
-     * )
-     *
-     * @Template()
-     */
-    public function sommeAction($a,$b)
-    {
-        return array(
-            'somme' => $this->get('park.calculator')->somme($a,$b)
-        );
     }
 }

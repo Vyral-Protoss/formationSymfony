@@ -35,6 +35,13 @@ class Person
      */
     private $lastname;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="age", type="string", length=3)
+     */
+    private $age;
+
 
     /**
      * Get id
@@ -94,6 +101,11 @@ class Person
         return $this->lastname;
     }
 
+    public function __toString()
+    {
+        return $this->getFirstname() . ' ' . $this->getLastname();
+    }
+
     /**
      * @ORM\OneToMany(targetEntity="Computer", mappedBy="person")
      */
@@ -139,5 +151,29 @@ class Person
     public function getComputers()
     {
         return $this->computers;
+    }
+
+    /**
+     * Set age
+     *
+     * @param string $age
+     *
+     * @return Person
+     */
+    public function setAge($age)
+    {
+        $this->age = $age;
+
+        return $this;
+    }
+
+    /**
+     * Get age
+     *
+     * @return string
+     */
+    public function getAge()
+    {
+        return $this->age;
     }
 }

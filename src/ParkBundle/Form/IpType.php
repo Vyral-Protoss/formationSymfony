@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class PersonType extends AbstractType
+class IpType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,9 +15,10 @@ class PersonType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname')
-            ->add('lastname')
-            ->add('age')
+            ->add('ip')
+            ->add('updateAt')
+            ->add('description')
+            ->add('computer')
         ;
     }
     
@@ -27,7 +28,7 @@ class PersonType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ParkBundle\Entity\Person'
+            'data_class' => 'ParkBundle\Entity\Ip'
         ));
     }
 
@@ -36,6 +37,6 @@ class PersonType extends AbstractType
      */
     public function getName()
     {
-        return 'parkbundle_person';
+        return 'parkbundle_ip';
     }
 }

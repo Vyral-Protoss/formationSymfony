@@ -5,6 +5,9 @@ services:
             - { name: twig.extension }
 
     park.computerManager:
-        class: ParkBundle\Services\computerManager
+        class: ParkBundle\Services\ComputerManager
         arguments: ["@doctrine"]
+
+    park.calculator:
+        class: ParkBundle\Services\Calculator
 
